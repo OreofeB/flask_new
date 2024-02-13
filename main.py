@@ -59,6 +59,9 @@ def preprocess_data(data):
 @app.route('/predict', methods=['POST'])  
 def predict():
     data = request.get_json()
+
+    # Convert JSON data to DataFrame
+    data = pd.DataFrame(data)
     
     # Preprocess
     preprocessed_data = preprocess_data(data)
