@@ -15,14 +15,14 @@ model_path = 'dp_model.h5'
 model = tf.keras.models.load_model(model_path)
 
 # Preprocessing function
-def preprocess_data(data):
+def preprocess_data(data_df):
     # Your preprocessing code here
     columns_to_drop = ['org_id', 'user_id', 'status_id', 'loan_id', 'work_start_date', 'work_email', 'loan_request_day',
                        'current_employer', 'work_email_validated', 'first_account', 'last_account', 'created_on',
                        'process_time', 'photo_url', 'logins']
 
-    print("Columns in DataFrame:", data.columns)
-    new_data = data.drop(columns=columns_to_drop)
+    print("Columns in DataFrame:", data_df.columns)
+    new_data = data_df.drop(columns=columns_to_drop)
     # new_data = new_data.dropna()
     # new_data = new_data[new_data['status_id'] != 1]
 
@@ -61,10 +61,10 @@ def predict():
     data = request.get_json()
 
     # Convert JSON data to DataFrame
-    data = pd.DataFrame(data)
+    data_df = pd.DataFrame(data)
     
     # Preprocess
-    preprocessed_data = preprocess_data(data)
+    preprocessed_data = preprocess_data(data_df)
     
     # Make predictions
     predictions = model.predict(preprocessed_data)
