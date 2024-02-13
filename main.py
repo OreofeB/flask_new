@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)  
 
 # Load model
-model_path = 'model.h5' 
+model_path = 'dp_model.h5' 
 model = tf.keras.models.load_model(model_path)
 
 # Preprocessing function
