@@ -67,6 +67,8 @@ def predict():
     
     # Preprocess
     preprocessed_data = preprocess_data(data_df)
+    loan_id = data_df['loan_id']
+    loan_id = int(loan_id[0])
     
     # Make predictions using the model
     predictions = model.predict(preprocessed_data.values)
@@ -83,9 +85,9 @@ def predict():
 
     # Determine the result based on the rounded prediction
     if rounded_prediction == 0:
-        result = {'Date': timestamp, 'prediction': float(predictions), 'prediction (%)': rounded_percentage, 'rounded prediction': 0, 'status': 'Default'}
+        result = {'Date': timestamp, 'Loan ID': loan_id, 'prediction': float(predictions), 'prediction (%)': rounded_percentage, 'rounded prediction': 0, 'status': 'Default'}
     else:
-        result = {'Date': timestamp, 'prediction': float(predictions), 'prediction (%)': rounded_percentage, 'rounded prediction': 1, 'status': 'Not Default'}
+        result = {'Date': timestamp, 'Loan ID': loan_id, 'prediction': float(predictions), 'prediction (%)': rounded_percentage, 'rounded prediction': 1, 'status': 'Not Default'}
 
     return jsonify(result)
 
