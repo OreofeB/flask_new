@@ -6,12 +6,14 @@ import pickle
 import tensorflow as tf
 from sklearn.preprocessing import LabelEncoder
 from flask_cors import CORS  
+import os
 
 app = Flask(__name__)
 CORS(app)  
 
 # Load model
-model_path = 'dp_model.h5' 
+model_path = 'C:\\Users\\parkway\\Documents\\Python Code\\ML_Models\\LP_Models\\models\\dp_model.h5'
+# model_path = 'dp_model.h5' 
 model = tf.keras.models.load_model(model_path)
 
 # Preprocessing function
@@ -66,28 +68,26 @@ def predict():
     # Preprocess
     preprocessed_data = preprocess_data(data_df)
     
-    # Make predictions
-    predictions = model.predict(preprocessed_data)
+    # Make predictions using the model
+    predictions = model.predict(preprocessed_data.values)
 
-    # Round prediction 
-    rounded_prediction = round(predictions[0])
+    # Adjust the prediction output format and Round the prediction to 0 or 1
+    rounded_prediction = int(np.round(predictions[0]))
+    predictions_percentage = predictions * 100
 
-    # Get default status
-    default = rounded_prediction < 0.5
-    status = 'Default' if default else 'Not Default'
+    # Adjust the prediction output format and round the prediction to 0 or 1
+    rounded_percentage = np.round(float(predictions_percentage), decimals=2)
 
-    # Construct response
-    result = {
-        'prediction': predictions[0],
-        'rounded': rounded_prediction, 
-        'status': status
-    }
+    # Timestamp
+    timestamp = dt.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # Optional - add timestamp
-    timestamp = dt.now().isoformat()  
-    result['timestamp'] = timestamp
+    # Determine the result based on the rounded prediction
+    if rounded_prediction == 0:
+        result = {'Date': timestamp, 'prediction': float(predictions), 'prediction (%)': rounded_percentage, 'rounded prediction': 0, 'status': 'Default'}
+    else:
+        result = {'Date': timestamp, 'prediction': float(predictions), 'prediction (%)': rounded_percentage, 'rounded prediction': 1, 'status': 'Not Default'}
 
-    return jsonify(result)  
+    return jsonify(result)
 
 if __name__ == '__main__':
     # app.run(debug=True)
