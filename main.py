@@ -28,14 +28,14 @@ def preprocess_data(data_df):
     # new_data = new_data.dropna()
     # new_data = new_data[new_data['status_id'] != 1]
 
-    remaining_fields = ['no_of_dependent', 'phone_network', 'requested_amount']
+    remaining_fields = ['no_of_dependent', 'requested_amount']
     
     new_data[remaining_fields] = new_data[remaining_fields].astype(int)
 
     columns_to_encode = ['gender', 'marital_status', 'type_of_residence', 'educational_attainment',
                          'sector_of_employment', 'monthly_net_income', 'country', 'city', 'lga', 'purpose',
                          'selfie_bvn_check', 'selfie_id_check', 'device_name', 'mobile_os', 'os_version',
-                         'no_of_dependent', 'employment_status']
+                         'no_of_dependent', 'employment_status','phone_network','bank']
 
     label_encoder = LabelEncoder()
     for column in columns_to_encode:
