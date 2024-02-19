@@ -33,7 +33,7 @@ def preprocess_data(data_df):
     
     # new_data[remaining_fields] = new_data[remaining_fields].astype(int)
 
-    new_data["requested_amount"] = new_data["requested_amount"].astype(int)
+    new_data["requested_amount", "no_of_dependent", "phone_network"] = new_data["requested_amount", "no_of_dependent", "phone_network"].astype(int)
 
     columns_to_encode = ['gender', 'marital_status', 'type_of_residence', 'educational_attainment',
                          'sector_of_employment', 'monthly_net_income', 'country', 'city', 'lga', 'purpose',
