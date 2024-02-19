@@ -28,7 +28,16 @@ def preprocess_data(data_df):
     # new_data = new_data.dropna()
     # new_data = new_data[new_data['status_id'] != 1]
 
-    new_data["requested_amount"] = new_data["requested_amount"].astype(int)
+    remaining_fields = ['gender', 'marital_status', 'no_of_dependent', 'type_of_residence', 'educational_attainment',
+                    'employment_status', 'sector_of_employment', 'monthly_net_income', 'country', 'city', 'lga',
+                    'requested_amount', 'purpose', 'proposed_payday', 'loan_request_hour', 'age', 'selfie_bvn_check',
+                    'selfie_id_check', 'phone_network', 'loan_requests', 'failed_loan_requests', 'successful_loan_requests',
+                    'loans', 'lending_lenders', 'lenders', 'emails', 'phone_numbers', 'device_name', 'mobile_os',
+                    'os_version', 'bank']
+    
+    new_data[remaining_fields] = new_data[remaining_fields].astype(int)
+
+    # new_data["requested_amount"] = new_data["requested_amount"].astype(int)
 
     columns_to_encode = ['gender', 'marital_status', 'type_of_residence', 'educational_attainment',
                          'sector_of_employment', 'monthly_net_income', 'country', 'city', 'lga', 'purpose',
