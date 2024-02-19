@@ -28,12 +28,12 @@ def preprocess_data(data_df):
     # new_data = new_data.dropna()
     # new_data = new_data[new_data['status_id'] != 1]
 
-    remaining_fields = ['no_of_dependent', 'loan_request_hour', 'age', 'phone_network', 'loan_requests', 'failed_loan_requests',
-                        'successful_loan_requests', 'loans', 'lending_lenders', 'lenders', 'emails', 'phone_numbers', 'bank']
+    # remaining_fields = ['no_of_dependent', 'loan_request_hour', 'age', 'phone_network', 'loan_requests', 'failed_loan_requests',
+    #                     'successful_loan_requests', 'loans', 'lending_lenders', 'lenders', 'emails', 'phone_numbers', 'bank']
     
-    new_data[remaining_fields] = new_data[remaining_fields].astype(int)
+    # new_data[remaining_fields] = new_data[remaining_fields].astype(int)
 
-    # new_data["requested_amount"] = new_data["requested_amount"].astype(int)
+    new_data["requested_amount"] = new_data["requested_amount"].astype(int)
 
     columns_to_encode = ['gender', 'marital_status', 'type_of_residence', 'educational_attainment',
                          'sector_of_employment', 'monthly_net_income', 'country', 'city', 'lga', 'purpose',
