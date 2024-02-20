@@ -11,6 +11,11 @@ import os
 app = Flask(__name__)
 CORS(app)  
 
+@app.route('/')
+def index():
+    result = {'Date': 1, 'Loan ID': 1, 'prediction': 1, 'prediction (%)': 1, 'rounded prediction': 1, 'status': 'Not Default'}
+    return jsonify('Request for index page received')
+
 # Load model
 # model_path = 'C:\\Users\\parkway\\Documents\\Python Code\\ML_Models\\LP_Models\\models\\dp_model.h5'
 model_path = 'dp_model.h5' 
