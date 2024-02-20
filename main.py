@@ -25,8 +25,6 @@ def preprocess_data(data_df):
 
     print("Columns in DataFrame:", data_df.columns)
     new_data = data_df.drop(columns=columns_to_drop)
-    # new_data = new_data.dropna()
-    # new_data = new_data[new_data['status_id'] != 1]
 
     remaining_fields = ['no_of_dependent', 'requested_amount']
     
