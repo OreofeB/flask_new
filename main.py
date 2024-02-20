@@ -61,7 +61,7 @@ def preprocess_data(data_df):
 @app.route('/index')
 def index():
     result = {'Date': 1, 'Loan ID': 1, 'prediction': 1, 'prediction (%)': 1, 'rounded prediction': 1, 'status': 'Not Default'}
-    return jsonify('Request for index page received')
+    return jsonify(result)
 
 
 # Prediction route
