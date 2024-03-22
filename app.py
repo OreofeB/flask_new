@@ -43,10 +43,6 @@ def preprocess_data(data_df):
                          'selfie_bvn_check', 'selfie_id_check', 'device_name', 'mobile_os', 'os_version',
                          'no_of_dependent', 'employment_status','phone_network','bank']
 
-    # # Use label encoders for categorical variables
-    # for column, le in label_encoder.items():
-    #     new_data[column] = le.transform(new_data[column])
-
     # Use label encoders for categorical variables
     for column, le in label_encoder.items():
         if column != 'status_id':
